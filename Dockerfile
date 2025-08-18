@@ -41,8 +41,11 @@ RUN php railway-setup.php
 # Set permissions
 RUN chmod -R 755 storage bootstrap/cache
 
-# Expose port 8000
-EXPOSE 8000
+# Make startup script executable
+RUN chmod +x start.sh
 
-# Start Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"] 
+# Expose port (Railway will set PORT environment variable)
+EXPOSE $PORT
+
+# Start Laravel with Railway's PORT
+CMD ["./start.sh"] 
