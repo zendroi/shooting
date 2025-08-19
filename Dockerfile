@@ -44,5 +44,5 @@ RUN chmod -R 755 storage bootstrap/cache
 # Expose port (Railway will set PORT environment variable)
 EXPOSE $PORT
 
-# Start Laravel with PHP script to handle PORT properly
-CMD ["php", "start.php"] 
+# Start Laravel with custom server script to avoid ServeCommand issues
+CMD ["php", "server.php"] 

@@ -13,5 +13,11 @@ echo "Starting Laravel on port $port...\n";
 // Clear config cache
 passthru('php artisan config:clear');
 
-// Start Laravel server
-passthru("php artisan serve --host=0.0.0.0 --port=$port"); 
+// Use exec instead of passthru to avoid Laravel ServeCommand issues
+// Build the command string properly to avoid type issues
+$command = "php artisan serve --host=0.0.0.0 --port=" . $port;
+
+echo "Executing: $command\n";
+
+// Execute the command
+exec($command); 
